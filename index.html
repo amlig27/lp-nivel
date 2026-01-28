@@ -108,7 +108,6 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
                      :class="{active: unidadActiva === idx}"
                      @click="unidadActiva = idx">
                     <h3>{{unidad.nombre}}</h3>
-                    <p>{{unidad.semanas}}</p>
                 </div>
             </div>
 
@@ -208,7 +207,9 @@ int main() {
     printf("La suma de los numeros pares entre 1 y %d es: %d\\n", N, suma);
 
     return 0;
-}`
+}`,
+                                    salida: `Ingrese un numero N: 10
+La suma de los numeros pares entre 1 y 10 es: 30`
                                 },
                                 {
                                     num: 2,
@@ -250,7 +251,9 @@ int main() {
     }
 
     return 0;
-}`
+}`,
+                                    salida: `Ingrese la calificacion (0 a 20): 18
+A- EXCELENTE`
                                 },
                                 {
                                     num: 3,
@@ -270,7 +273,9 @@ int main() {
 
     printf("Inverso: %d\\n", inv);
     return 0;
-}`
+}`,
+                                    salida: `Ingrese numero: 1234
+Inverso: 4321`
                                 },
                                 {
                                     num: 4,
@@ -302,7 +307,21 @@ int main() {
     } while (op != 0);
 
     return 0;
-}`
+}`,
+                                    salida: `1 Suma
+2 Resta
+3 Mult
+4 Div
+0 Salir
+1
+5 3
+8.00
+1 Suma
+2 Resta
+3 Mult
+4 Div
+0 Salir
+0`
                                 },
                                 {
                                     num: 5,
@@ -320,7 +339,13 @@ int main() {
         printf("\\n");
     }
     return 0;
-}`
+}`,
+                                    salida: `5
+*
+**
+***
+****
+*****`
                                 }
                             ]
                         },
@@ -358,7 +383,11 @@ int main() {
         printf("El numero NO es perfecto\\n");
 
     return 0;
-}`
+}`,
+                                    salida: `Ingrese un numero: 6
+1 2 3 
+Suma: 6
+El numero es PERFECTO`
                                 },
                                 {
                                     num: 7,
@@ -383,7 +412,9 @@ int main() {
     }
 
     return 0;
-}`
+}`,
+                                    salida: `Ingrese N: 8
+0 1 1 2 3 5 8 13`
                                 },
                                 {
                                     num: 8,
@@ -412,7 +443,9 @@ int main() {
         printf("Contrasena INVALIDA\\n");
 
     return 0;
-}`
+}`,
+                                    salida: `Ingrese contraseña: Pass123@
+Contrasena VALIDA`
                                 },
                                 {
                                     num: 9,
@@ -443,7 +476,10 @@ int main() {
         printf("%c", res[j]);
 
     return 0;
-}`
+}`,
+                                    salida: `Numero decimal: 25
+Base (2,8,16): 16
+Resultado: 19`
                                 },
                                 {
                                     num: 10,
@@ -476,7 +512,16 @@ int main() {
     } while (intento != secreto);
     
     return 0;
-}`
+}`,
+                                    salida: `Adivina el numero (1-100)
+Ingresa tu intento: 50
+Muy alto!
+Ingresa tu intento: 25
+Muy bajo!
+Ingresa tu intento: 37
+Muy alto!
+Ingresa tu intento: 31
+Correcto! Lo lograste en 4 intentos`
                                 }
                             ]
                         },
@@ -520,7 +565,16 @@ int main() {
                             <h5 style="color:var(--primary);margin-bottom:1rem">
                                 <i class="fas fa-code"></i> Ejercicio ${ej.num}: ${ej.titulo}
                             </h5>
+                            <h6 style="color:var(--dark);margin-top:1.5rem;margin-bottom:.8rem;font-weight:600">
+                                <i class="fas fa-file-code"></i> Código:
+                            </h6>
                             <pre style="background:#f8f9fa;padding:1.5rem;border-radius:8px;overflow-x:auto;border:1px solid var(--accent);color:#000"><code>${ej.codigo}</code></pre>
+                            ${ej.salida ? `
+                            <h6 style="color:var(--dark);margin-top:1.5rem;margin-bottom:.8rem;font-weight:600">
+                                <i class="fas fa-terminal"></i> Salida:
+                            </h6>
+                            <pre style="background:#f8f9fa;color:#000;padding:1.5rem;border-radius:8px;overflow-x:auto;border:1px solid var(--accent);font-family:'Courier New',monospace"><code>${ej.salida}</code></pre>
+                            ` : ''}
                         </div>
                     `;
                 });
