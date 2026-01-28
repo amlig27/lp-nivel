@@ -2,99 +2,535 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Curso por Semanas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lenguajes de Programación</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background-color: #f8c8dc;
-color: #4a0033;
-}
-header {
-background-color: #f48fb1;
-padding: 20px;
-text-align: center;
-}
-section {
-margin: 20px;
-padding: 15px;
-background-color: #fde4ef;
-border-radius: 8px;
-}
-h1, h2 {
-margin: 0 0 10px 0;
-}
-footer {
-background-color: #f48fb1;
-text-align: center;
-padding: 10px;
+:root{--primary:#7a9ca5;--secondary:#b8c5c9;--accent:#d4dfe1;--light:#f5f8f9;--dark:#4a6168}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--light);color:var(--dark)}
+.navbar{background:#fff;box-shadow:0 2px 20px rgba(122,156,165,.1);position:sticky;top:0;z-index:100;padding:1rem 0}
+.navbar-brand{font-size:1.8em;color:var(--primary)!important;font-weight:300;letter-spacing:3px}
+.nav-link{color:var(--dark)!important;margin:0 1.2rem;font-size:.95em;letter-spacing:1px;transition:.3s;position:relative}
+.nav-link:hover{color:var(--primary)!important}
+.nav-link::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:.3s}
+.nav-link:hover::after{width:100%}
+.hero{background:linear-gradient(rgba(245,248,249,.9),rgba(212,223,225,.85)),url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600');background-size:cover;background-position:center;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero h1{font-size:4em;color:var(--primary);font-weight:300;letter-spacing:5px;margin-bottom:1rem;animation:fadeInDown 1s}
+.hero p{color:var(--dark);font-size:1.3em;letter-spacing:2px;animation:fadeInUp 1s}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+section{padding:5rem 0}
+.section-title{font-size:2.5em;color:var(--primary);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:3rem;position:relative}
+.section-title::after{content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:var(--secondary)}
+.info-card{background:#fff;border-radius:15px;padding:2rem;text-align:center;box-shadow:0 5px 25px rgba(122,156,165,.15);transition:.3s;margin-bottom:2rem}
+.info-card:hover{transform:translateY(-10px);box-shadow:0 10px 35px rgba(122,156,165,.25)}
+.info-card i{font-size:3em;color:var(--primary);margin-bottom:1rem}
+.info-card h4{color:var(--dark);font-weight:400;margin-bottom:1rem}
+
+/* Tabs de navegación de unidades */
+.unidad-tabs{display:flex;gap:1rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+.unidad-tab{background:#fff;border:3px solid var(--accent);border-radius:15px;padding:1.5rem 2.5rem;cursor:pointer;transition:.3s;text-align:center;min-width:150px}
+.unidad-tab:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(122,156,165,.2)}
+.unidad-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.unidad-tab h3{font-size:1.5em;font-weight:400;margin:0}
+.unidad-tab p{font-size:.9em;margin:.3rem 0 0 0;opacity:.9}
+
+/* Tarjetas de tareas */
+.tarea-card{background:#fff;border:3px solid var(--primary);border-radius:20px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 5px 30px rgba(122,156,165,.15);transition:.3s;position:relative}
+.tarea-card:hover{transform:translateY(-8px);box-shadow:0 10px 40px rgba(122,156,165,.25)}
+
+.tarea-icon{width:80px;height:80px;background:var(--primary);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 4px 15px rgba(122,156,165,.3)}
+.tarea-icon i{font-size:2.5em;color:#fff}
+
+.tarea-titulo{font-size:1.8em;color:var(--primary);font-weight:500;text-align:center;margin-bottom:1.5rem;letter-spacing:1px}
+
+.btn-ver-pdf{background:var(--primary);color:#fff;border:none;border-radius:12px;padding:1rem 2.5rem;font-weight:500;letter-spacing:1px;font-size:1.1em;transition:.3s;display:flex;align-items:center;gap:.8rem;justify-content:center;width:fit-content;margin:0 auto;box-shadow:0 4px 15px rgba(122,156,165,.3)}
+.btn-ver-pdf:hover{background:var(--dark);transform:scale(1.05);box-shadow:0 6px 20px rgba(74,97,104,.4)}
+.btn-ver-pdf i{font-size:1.3em}
+
+footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
+
+.empty-state{text-align:center;padding:3rem;color:var(--secondary);font-size:1.2em}
+
+/* Responsive */
+@media (max-width: 768px){
+    .hero h1{font-size:2.5em}
+    .hero p{font-size:1em}
+    .unidad-tab{min-width:120px;padding:1rem 1.5rem}
+    .unidad-tab h3{font-size:1.2em}
+    .tarea-titulo{font-size:1.4em}
 }
 </style>
 </head>
 <body>
-<header>
-<h1>Curso de Introducción</h1>
-<p>Contenido organizado por semanas</p>
-</header>
-<section>
-<h2>Semana 1</h2>
-<p>Introducción al curso y conceptos básicos.</p>
+<nav class="navbar navbar-expand-lg">
+<div class="container"><a class="navbar-brand" href="#inicio"><i class="fas fa-code"></i> LP</a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+<li class="nav-item"><a class="nav-link" href="#info">Información</a></li>
+<li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
+<li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+</ul></div></div>
+</nav>
+
+<div class="hero" id="inicio">
+    <div>
+        <h1>Lenguajes de Programación</h1>
+        <p>Una colección de conocimientos fundamentales</p>
+    </div>
+</div>
+
+<section id="info">
+    <div class="container">
+        <h2 class="section-title">Información del Curso</h2>
+        <div class="row">
+            <div class="col-md-3"><div class="info-card"><i class="fas fa-book"></i><h4>Curso</h4><p>Lenguajes de Programación</p></div></div>
+            <div class="col-md-3"><div class="info-card"><i class="fas fa-calendar"></i><h4>Duración</h4><p>7 Semanas</p></div></div>
+            <div class="col-md-3"><div class="info-card"><i class="fas fa-tasks"></i><h4>Actividades</h4><p>Ejercicios prácticos</p></div></div>
+            <div class="col-md-3"><div class="info-card"><i class="fas fa-graduation-cap"></i><h4>Nivel</h4><p>Intermedio</p></div></div>
+        </div>
+    </div>
 </section>
-<section>
-<h2>Semana 2</h2>
-<p>Fundamentos teóricos y ejemplos simples.</p>
+
+<section id="actividades" style="background:#fff">
+    <div class="container">
+        <h2 class="section-title">Actividades por Unidad</h2>
+        
+        <div id="app">
+            <!-- Tabs de Unidades -->
+            <div class="unidad-tabs">
+                <div v-for="(unidad, idx) in unidades" 
+                     :key="idx" 
+                     class="unidad-tab"
+                     :class="{active: unidadActiva === idx}"
+                     @click="unidadActiva = idx">
+                    <h3>{{unidad.nombre}}</h3>
+                    <p>{{unidad.semanas}}</p>
+                </div>
+            </div>
+
+            <!-- Contenido de la Unidad Activa -->
+            <div class="row">
+                <div class="col-md-6" v-for="(tarea, idx) in unidades[unidadActiva].tareas" :key="idx">
+                    <div class="tarea-card">
+                        <div class="tarea-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <h3 class="tarea-titulo">{{tarea.nombre}}</h3>
+                        <button class="btn-ver-pdf" @click="verTarea(tarea)">
+                            <i class="fas fa-eye"></i>
+                            <span>Ver PDF</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div v-if="unidades[unidadActiva].tareas.length === 0" class="col-12">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open" style="font-size:4em;margin-bottom:1rem;display:block"></i>
+                        <p>No hay tareas disponibles en esta unidad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<section>
-<h2>Semana 3</h2>
-<p>Práctica guiada y ejercicios.</p>
+
+<section id="contacto">
+    <div class="container text-center">
+        <h2 class="section-title">Contacto</h2>
+        <p style="font-size:1.1em;color:var(--dark);max-width:600px;margin:0 auto">¿Tienes preguntas sobre el curso? No dudes en contactarme.</p>
+        <div class="mt-4">
+            <a href="#" class="btn-ver-pdf me-3" style="display:inline-flex"><i class="fas fa-envelope"></i> Email</a>
+            <a href="#" class="btn-ver-pdf" style="display:inline-flex"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
 </section>
-<section>
-<h2>Semana 4</h2>
-<p>Aplicaciones y proyecto corto.</p>
-</section>
-<section>
-<h2>Semana 5</h2>
-<p>Evaluación y retroalimentación.</p>
-</section>
-<section>
-<h2>Semana 6</h2>
-<p>Cierre del curso y conclusiones.</p>
-</section>
+
 <footer>
-<p>© 2026 Curso Rosado</p>
+    <div class="container">
+        <p>© 2026 Lenguajes de Programación. Todos los derechos reservados.</p>
+    </div>
 </footer>
-<!-- Línea de relleno 1 -->
-<!-- Línea de relleno 2 -->
-<!-- Línea de relleno 3 -->
-<!-- Línea de relleno 4 -->
-<!-- Línea de relleno 5 -->
-<!-- Línea de relleno 6 -->
-<!-- Línea de relleno 7 -->
-<!-- Línea de relleno 8 -->
-<!-- Línea de relleno 9 -->
-<!-- Línea de relleno 10 -->
-<!-- Línea de relleno 11 -->
-<!-- Línea de relleno 12 -->
-<!-- Línea de relleno 13 -->
-<!-- Línea de relleno 14 -->
-<!-- Línea de relleno 15 -->
-<!-- Línea de relleno 16 -->
-<!-- Línea de relleno 17 -->
-<!-- Línea de relleno 18 -->
-<!-- Línea de relleno 19 -->
-<!-- Línea de relleno 20 -->
-<!-- Línea de relleno 21 -->
-<!-- Línea de relleno 22 -->
-<!-- Línea de relleno 23 -->
-<!-- Línea de relleno 24 -->
-<!-- Línea de relleno 25 -->
-<!-- Línea de relleno 26 -->
-<!-- Línea de relleno 27 -->
-<!-- Línea de relleno 28 -->
-<!-- Línea de relleno 29 -->
-<!-- Línea de relleno 30 -->
-<!-- Línea de relleno 31 -->
-<!-- Línea de relleno 32 -->
-<!-- Línea de relleno 33 -->
+
+<!-- Modal para ver ejercicios -->
+<div class="modal fade" id="tareaModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header" style="background:var(--primary);color:#fff">
+                <h5 class="modal-title" id="modalTitle">Ejercicios</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalBody" style="background:var(--light)">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const{createApp}=Vue;
+createApp({
+    data(){
+        return{
+            unidadActiva: 0,
+            unidades: [
+                {
+                    nombre: 'Semana 1 y 2',
+                    semanas: 'Introducción',
+                    tareas: [
+                        {
+                            nombre: 'Tarea 01',
+                            ejercicios: [
+                                {
+                                    num: 1,
+                                    titulo: 'Suma de números pares',
+                                    codigo: `// E1: Suma de numeros pares
+#include <stdio.h>
+
+int main() {
+    int N, suma = 0;
+
+    // Entrada de datos
+    printf("Ingrese un numero N: ");
+    scanf("%d", &N);
+
+    // Proceso: sumar numeros pares
+    for (int i = 2; i <= N; i += 2) {
+        suma += i;
+    }
+
+    // Salida de datos
+    printf("La suma de los numeros pares entre 1 y %d es: %d\\n", N, suma);
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 2,
+                                    titulo: 'Conversión de calificación',
+                                    codigo: `//Ejercicio 2: Conversion de calificacion
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nota;
+
+    cout << "Ingrese la calificacion (0 a 20): ";
+    cin >> nota;
+
+    switch (nota) {
+        case 20: case 19: case 18:
+            cout << "A- EXCELENTE";
+            break;
+
+        case 17: case 16: case 15:
+            cout << "B- MUY BUENO";
+            break;
+
+        case 14: case 13: case 12: case 11:
+            cout << "C- BUENO";
+            break;
+
+        case 10: case 9: case 8:
+            cout << "D- REGULAR";
+            break;
+
+        case 7: case 6: case 5: case 4:
+        case 3: case 2: case 1: case 0:
+            cout << "F- DESAPROBADO";
+            break;
+
+        default:
+            cout << "Error: calificacion fuera de rango";
+    }
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 3,
+                                    titulo: 'Número inverso',
+                                    codigo: `#include <stdio.h>
+
+int main() {
+    int n, inv = 0, dig;
+    printf("Ingrese numero: ");
+    scanf("%d", &n);
+
+    while (n > 0) {
+        dig = n % 10;
+        inv = inv * 10 + dig;
+        n = n / 10;
+    }
+
+    printf("Inverso: %d\\n", inv);
+    return 0;
+}`
+                                },
+                                {
+                                    num: 4,
+                                    titulo: 'Menú de operaciones',
+                                    codigo: `// Ejercicio 4: Menu de operaciones
+#include <stdio.h>
+
+int main() {
+    int op;
+    float a, b;
+
+    do {
+        printf("1 Suma\\n2 Resta\\n3 Mult\\n4 Div\\n0 Salir\\n");
+        scanf("%d", &op);
+
+        if (op >= 1 && op <= 4) {
+            scanf("%f %f", &a, &b);
+        }
+
+        switch (op) {
+            case 1: printf("%.2f\\n", a+b); break;
+            case 2: printf("%.2f\\n", a-b); break;
+            case 3: printf("%.2f\\n", a*b); break;
+            case 4:
+                if (b == 0) printf("Error\\n");
+                else printf("%.2f\\n", a/b);
+                break;
+        }
+    } while (op != 0);
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 5,
+                                    titulo: 'Triángulo de asteriscos',
+                                    codigo: `//Ejercicio 5a: Triangulo de asteriscos
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++)
+            printf("*");
+        printf("\\n");
+    }
+    return 0;
+}`
+                                }
+                            ]
+                        },
+                        {
+                            nombre: 'Tarea 02',
+                            ejercicios: [
+                                {
+                                    num: 6,
+                                    titulo: 'Número perfecto',
+                                    codigo: `#include <stdio.h>
+// Ejercicio 6: Numero perfecto
+int main() {
+    int n, suma = 0;
+
+    printf("Ingrese un numero: ");
+    scanf("%d", &n);
+
+    if (n <= 1) {
+        printf("Numero invalido\\n");
+        return 0;
+    }
+
+    for (int i = 1; i < n; i++) {
+        if (n % i == 0) {
+            printf("%d ", i);
+            suma += i;
+        }
+    }
+
+    printf("\\nSuma: %d\\n", suma);
+
+    if (suma == n)
+        printf("El numero es PERFECTO\\n");
+    else
+        printf("El numero NO es perfecto\\n");
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 7,
+                                    titulo: 'Serie Fibonacci',
+                                    codigo: `// Ejercicio 7: Serie Fibonacci
+#include <stdio.h>
+
+int main() {
+    int n, a = 0, b = 1, c;
+
+    printf("Ingrese N: ");
+    scanf("%d", &n);
+
+    if (n >= 1) printf("%d ", a);
+    if (n >= 2) printf("%d ", b);
+
+    for (int i = 3; i <= n; i++) {
+        c = a + b;
+        printf("%d ", c);
+        a = b;
+        b = c;
+    }
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 8,
+                                    titulo: 'Validador de contraseña',
+                                    codigo: `// Ejercicio 8: Validador de contraseña
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char pass[50];
+    int may = 0, min = 0, dig = 0, esp = 0;
+
+    printf("Ingrese contraseña: ");
+    scanf("%s", pass);
+
+    for (int i = 0; i < strlen(pass); i++) {
+        if (pass[i] >= 'A' && pass[i] <= 'Z') may = 1;
+        else if (pass[i] >= 'a' && pass[i] <= 'z') min = 1;
+        else if (pass[i] >= '0' && pass[i] <= '9') dig = 1;
+        else if (pass[i]=='!'||pass[i]=='@'||pass[i]=='#'||pass[i]=='$'||pass[i]=='%') esp = 1;
+    }
+
+    if (strlen(pass) >= 8 && may && min && dig && esp)
+        printf("Contrasena VALIDA\\n");
+    else
+        printf("Contrasena INVALIDA\\n");
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 9,
+                                    titulo: 'Conversión de bases',
+                                    codigo: `// E9: Conversion de Bases
+#include <stdio.h>
+
+int main() {
+    int n, base, r;
+    char digitos[] = "0123456789ABCDEF";
+    char res[50];
+    int i = 0;
+
+    printf("Numero decimal: ");
+    scanf("%d", &n);
+
+    printf("Base (2,8,16): ");
+    scanf("%d", &base);
+
+    while (n > 0) {
+        r = n % base;
+        res[i++] = digitos[r];
+        n /= base;
+    }
+
+    printf("Resultado: ");
+    for (int j = i-1; j >= 0; j--)
+        printf("%c", res[j]);
+
+    return 0;
+}`
+                                },
+                                {
+                                    num: 10,
+                                    titulo: 'Juego de adivinanza',
+                                    codigo: `// E10: Juego de adivinanza
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int secreto, intento, intentos = 0;
+    
+    srand(time(NULL));
+    secreto = rand() % 100 + 1;
+    
+    printf("Adivina el numero (1-100)\\n");
+    
+    do {
+        printf("Ingresa tu intento: ");
+        scanf("%d", &intento);
+        intentos++;
+        
+        if (intento > secreto)
+            printf("Muy alto!\\n");
+        else if (intento < secreto)
+            printf("Muy bajo!\\n");
+        else
+            printf("Correcto! Lo lograste en %d intentos\\n", intentos);
+            
+    } while (intento != secreto);
+    
+    return 0;
+}`
+                                }
+                            ]
+                        },
+                        {
+                            nombre: 'Tarea 03',
+                            ejercicios: []
+                        }
+                    ]
+                },
+                {
+                    nombre: 'Semana 3 y 4',
+                    semanas: 'Estructuras de control',
+                    tareas: []
+                },
+                {
+                    nombre: 'Semana 5 y 6',
+                    semanas: 'POO',
+                    tareas: []
+                },
+                {
+                    nombre: 'Semana 7',
+                    semanas: 'Proyecto Final',
+                    tareas: []
+                }
+            ]
+        }
+    },
+    methods: {
+        verTarea(tarea) {
+            const modal = new bootstrap.Modal(document.getElementById('tareaModal'));
+            document.getElementById('modalTitle').textContent = tarea.nombre;
+            
+            let contenido = '';
+            
+            if(tarea.ejercicios.length === 0) {
+                contenido = '<div style="text-align:center;padding:3rem;color:var(--secondary)"><i class="fas fa-inbox" style="font-size:4em;margin-bottom:1rem;display:block"></i><p style="font-size:1.2em">No hay ejercicios disponibles</p></div>';
+            } else {
+                tarea.ejercicios.forEach(ej => {
+                    contenido += `
+                        <div style="background:#fff;border-left:5px solid var(--primary);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 3px 15px rgba(122,156,165,.1)">
+                            <h5 style="color:var(--primary);margin-bottom:1rem">
+                                <i class="fas fa-code"></i> Ejercicio ${ej.num}: ${ej.titulo}
+                            </h5>
+                            <pre style="background:#f8f9fa;padding:1.5rem;border-radius:8px;overflow-x:auto;border:1px solid var(--accent);color:#000"><code>${ej.codigo}</code></pre>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('modalBody').innerHTML = contenido;
+            modal.show();
+        }
+    }
+}).mount('#app');
+</script>
 </body>
 </html>
