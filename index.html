@@ -19,6 +19,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--light);color:var(
 .hero{background:linear-gradient(rgba(245,248,249,.9),rgba(212,223,225,.85)),url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600');background-size:cover;background-position:center;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
 .hero h1{font-size:4em;color:var(--primary);font-weight:300;letter-spacing:5px;margin-bottom:1rem;animation:fadeInDown 1s}
 .hero p{color:var(--dark);font-size:1.3em;letter-spacing:2px;animation:fadeInUp 1s}
+.hero .info-adicional{font-size:1em;margin-top:0.5rem;opacity:0.85;animation:fadeInUp 1.2s}
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 section{padding:5rem 0}
@@ -54,6 +55,19 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
 
 .empty-state{text-align:center;padding:3rem;color:var(--secondary);font-size:1.2em}
 
+/* Cuadro de información en Contacto */
+.info-cuadro-contacto {
+    background: rgba(255,255,255,0.9);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    max-width:400px;
+    margin: 0 auto 2rem auto;
+    font-size: 1em;
+    text-align:left;
+}
+.info-cuadro-contacto p { margin:0.4rem 0; font-weight:500; color:var(--dark); }
+
 /* Responsive */
 @media (max-width: 768px){
     .hero h1{font-size:2.5em}
@@ -88,7 +102,7 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
         <h2 class="section-title">Información del Curso</h2>
         <div class="row">
             <div class="col-md-3"><div class="info-card"><i class="fas fa-book"></i><h4>Curso</h4><p>Lenguajes de Programación</p></div></div>
-            <div class="col-md-3"><div class="info-card"><i class="fas fa-calendar"></i><h4>Duración</h4><p>7 Semanas</p></div></div>
+            <div class="col-md-3"><div class="info-card"><i class="fas fa-calendar"></i><h4>Duración</h4><p>2 Unidades</p></div></div>
             <div class="col-md-3"><div class="info-card"><i class="fas fa-tasks"></i><h4>Actividades</h4><p>Ejercicios prácticos</p></div></div>
             <div class="col-md-3"><div class="info-card"><i class="fas fa-graduation-cap"></i><h4>Nivel</h4><p>Intermedio</p></div></div>
         </div>
@@ -116,12 +130,12 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
                 <div class="col-md-6" v-for="(tarea, idx) in unidades[unidadActiva].tareas" :key="idx">
                     <div class="tarea-card">
                         <div class="tarea-icon">
-                            <i class="fas fa-file-code"></i>
+                            <i class="fas fa-file-pdf"></i>
                         </div>
                         <h3 class="tarea-titulo">{{tarea.nombre}}</h3>
                         <button class="btn-ver-pdf" @click="verTarea(tarea)">
                             <i class="fas fa-eye"></i>
-                            <span>Ver</span>
+                            <span>Ver PDF</span>
                         </button>
                     </div>
                 </div>
@@ -140,10 +154,17 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
 <section id="contacto">
     <div class="container text-center">
         <h2 class="section-title">Contacto</h2>
-        <p style="font-size:1.1em;color:var(--dark);max-width:600px;margin:0 auto">¿Tienes preguntas sobre el curso? No dudes en contactarme.</p>
+
+        <!-- Cuadro con información -->
+        <div class="info-cuadro-contacto">
+            <p><strong>Universidad:</strong> Nacional del Altiplano</p>
+            <p><strong>Facultad:</strong> Ingeniería de Estadística e Informática</p>
+            <p><strong>Estudiante:</strong> Gilma Coaquira Salluca</p>
+        </div>
+
         <div class="mt-4">
             <a href="#" class="btn-ver-pdf me-3" style="display:inline-flex"><i class="fas fa-envelope"></i> Email</a>
-            <a href="#" class="btn-ver-pdf" style="display:inline-flex"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/amlig27/lp-nivel" class="btn-ver-pdf" style="display:inline-flex"><i class="fab fa-github"></i> GitHub</a>
         </div>
     </div>
 </section>
@@ -154,434 +175,38 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
     </div>
 </footer>
 
-<!-- Modal para ver ejercicios -->
-<div class="modal fade" id="tareaModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header" style="background:var(--primary);color:#fff">
-                <h5 class="modal-title" id="modalTitle">Ejercicios</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body" id="modalBody" style="background:var(--light)">
-                <!-- Contenido dinámico -->
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-const{createApp}=Vue;
+const {createApp} = Vue;
 createApp({
     data(){
         return{
             unidadActiva: 0,
             unidades: [
                 {
-                    nombre: 'Semana 1 y 2',
-                    semanas: 'Introducción',
+                    nombre: 'Unidad 1',
                     tareas: [
-                        {
-                            nombre: 'Tarea 01',
-                            ejercicios: [
-                                {
-                                    num: 1,
-                                    titulo: 'Suma de números pares',
-                                    codigo: `// E1: Suma de numeros pares
-#include <stdio.h>
-
-int main() {
-    int N, suma = 0;
-
-    // Entrada de datos
-    printf("Ingrese un numero N: ");
-    scanf("%d", &N);
-
-    // Proceso: sumar numeros pares
-    for (int i = 2; i <= N; i += 2) {
-        suma += i;
-    }
-
-    // Salida de datos
-    printf("La suma de los numeros pares entre 1 y %d es: %d\\n", N, suma);
-
-    return 0;
-}`,
-                                    salida: `Ingrese un numero N: 10
-La suma de los numeros pares entre 1 y 10 es: 30`
-                                },
-                                {
-                                    num: 2,
-                                    titulo: 'Conversión de calificación',
-                                    codigo: `//Ejercicio 2: Conversion de calificacion
-#include <iostream>
-using namespace std;
-
-int main() {
-    int nota;
-
-    cout << "Ingrese la calificacion (0 a 20): ";
-    cin >> nota;
-
-    switch (nota) {
-        case 20: case 19: case 18:
-            cout << "A- EXCELENTE";
-            break;
-
-        case 17: case 16: case 15:
-            cout << "B- MUY BUENO";
-            break;
-
-        case 14: case 13: case 12: case 11:
-            cout << "C- BUENO";
-            break;
-
-        case 10: case 9: case 8:
-            cout << "D- REGULAR";
-            break;
-
-        case 7: case 6: case 5: case 4:
-        case 3: case 2: case 1: case 0:
-            cout << "F- DESAPROBADO";
-            break;
-
-        default:
-            cout << "Error: calificacion fuera de rango";
-    }
-
-    return 0;
-}`,
-                                    salida: `Ingrese la calificacion (0 a 20): 18
-A- EXCELENTE`
-                                },
-                                {
-                                    num: 3,
-                                    titulo: 'Número inverso',
-                                    codigo: `#include <stdio.h>
-
-int main() {
-    int n, inv = 0, dig;
-    printf("Ingrese numero: ");
-    scanf("%d", &n);
-
-    while (n > 0) {
-        dig = n % 10;
-        inv = inv * 10 + dig;
-        n = n / 10;
-    }
-
-    printf("Inverso: %d\\n", inv);
-    return 0;
-}`,
-                                    salida: `Ingrese numero: 1234
-Inverso: 4321`
-                                },
-                                {
-                                    num: 4,
-                                    titulo: 'Menú de operaciones',
-                                    codigo: `// Ejercicio 4: Menu de operaciones
-#include <stdio.h>
-
-int main() {
-    int op;
-    float a, b;
-
-    do {
-        printf("1 Suma\\n2 Resta\\n3 Mult\\n4 Div\\n0 Salir\\n");
-        scanf("%d", &op);
-
-        if (op >= 1 && op <= 4) {
-            scanf("%f %f", &a, &b);
-        }
-
-        switch (op) {
-            case 1: printf("%.2f\\n", a+b); break;
-            case 2: printf("%.2f\\n", a-b); break;
-            case 3: printf("%.2f\\n", a*b); break;
-            case 4:
-                if (b == 0) printf("Error\\n");
-                else printf("%.2f\\n", a/b);
-                break;
-        }
-    } while (op != 0);
-
-    return 0;
-}`,
-                                    salida: `1 Suma
-2 Resta
-3 Mult
-4 Div
-0 Salir
-1
-5 3
-8.00
-1 Suma
-2 Resta
-3 Mult
-4 Div
-0 Salir
-0`
-                                },
-                                {
-                                    num: 5,
-                                    titulo: 'Triángulo de asteriscos',
-                                    codigo: `//Ejercicio 5a: Triangulo de asteriscos
-#include <stdio.h>
-
-int main() {
-    int n;
-    scanf("%d", &n);
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= i; j++)
-            printf("*");
-        printf("\\n");
-    }
-    return 0;
-}`,
-                                    salida: `5
-*
-**
-***
-****
-*****`
-                                }
-                            ]
-                        },
-                        {
-                            nombre: 'Tarea 02',
-                            ejercicios: [
-                                {
-                                    num: 6,
-                                    titulo: 'Número perfecto',
-                                    codigo: `#include <stdio.h>
-// Ejercicio 6: Numero perfecto
-int main() {
-    int n, suma = 0;
-
-    printf("Ingrese un numero: ");
-    scanf("%d", &n);
-
-    if (n <= 1) {
-        printf("Numero invalido\\n");
-        return 0;
-    }
-
-    for (int i = 1; i < n; i++) {
-        if (n % i == 0) {
-            printf("%d ", i);
-            suma += i;
-        }
-    }
-
-    printf("\\nSuma: %d\\n", suma);
-
-    if (suma == n)
-        printf("El numero es PERFECTO\\n");
-    else
-        printf("El numero NO es perfecto\\n");
-
-    return 0;
-}`,
-                                    salida: `Ingrese un numero: 6
-1 2 3 
-Suma: 6
-El numero es PERFECTO`
-                                },
-                                {
-                                    num: 7,
-                                    titulo: 'Serie Fibonacci',
-                                    codigo: `// Ejercicio 7: Serie Fibonacci
-#include <stdio.h>
-
-int main() {
-    int n, a = 0, b = 1, c;
-
-    printf("Ingrese N: ");
-    scanf("%d", &n);
-
-    if (n >= 1) printf("%d ", a);
-    if (n >= 2) printf("%d ", b);
-
-    for (int i = 3; i <= n; i++) {
-        c = a + b;
-        printf("%d ", c);
-        a = b;
-        b = c;
-    }
-
-    return 0;
-}`,
-                                    salida: `Ingrese N: 8
-0 1 1 2 3 5 8 13`
-                                },
-                                {
-                                    num: 8,
-                                    titulo: 'Validador de contraseña',
-                                    codigo: `// Ejercicio 8: Validador de contraseña
-#include <stdio.h>
-#include <string.h>
-
-int main() {
-    char pass[50];
-    int may = 0, min = 0, dig = 0, esp = 0;
-
-    printf("Ingrese contraseña: ");
-    scanf("%s", pass);
-
-    for (int i = 0; i < strlen(pass); i++) {
-        if (pass[i] >= 'A' && pass[i] <= 'Z') may = 1;
-        else if (pass[i] >= 'a' && pass[i] <= 'z') min = 1;
-        else if (pass[i] >= '0' && pass[i] <= '9') dig = 1;
-        else if (pass[i]=='!'||pass[i]=='@'||pass[i]=='#'||pass[i]=='$'||pass[i]=='%') esp = 1;
-    }
-
-    if (strlen(pass) >= 8 && may && min && dig && esp)
-        printf("Contrasena VALIDA\\n");
-    else
-        printf("Contrasena INVALIDA\\n");
-
-    return 0;
-}`,
-                                    salida: `Ingrese contraseña: Pass123@
-Contrasena VALIDA`
-                                },
-                                {
-                                    num: 9,
-                                    titulo: 'Conversión de bases',
-                                    codigo: `// E9: Conversion de Bases
-#include <stdio.h>
-
-int main() {
-    int n, base, r;
-    char digitos[] = "0123456789ABCDEF";
-    char res[50];
-    int i = 0;
-
-    printf("Numero decimal: ");
-    scanf("%d", &n);
-
-    printf("Base (2,8,16): ");
-    scanf("%d", &base);
-
-    while (n > 0) {
-        r = n % base;
-        res[i++] = digitos[r];
-        n /= base;
-    }
-
-    printf("Resultado: ");
-    for (int j = i-1; j >= 0; j--)
-        printf("%c", res[j]);
-
-    return 0;
-}`,
-                                    salida: `Numero decimal: 25
-Base (2,8,16): 16
-Resultado: 19`
-                                },
-                                {
-                                    num: 10,
-                                    titulo: 'Juego de adivinanza',
-                                    codigo: `// E10: Juego de adivinanza
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main() {
-    int secreto, intento, intentos = 0;
-    
-    srand(time(NULL));
-    secreto = rand() % 100 + 1;
-    
-    printf("Adivina el numero (1-100)\\n");
-    
-    do {
-        printf("Ingresa tu intento: ");
-        scanf("%d", &intento);
-        intentos++;
-        
-        if (intento > secreto)
-            printf("Muy alto!\\n");
-        else if (intento < secreto)
-            printf("Muy bajo!\\n");
-        else
-            printf("Correcto! Lo lograste en %d intentos\\n", intentos);
-            
-    } while (intento != secreto);
-    
-    return 0;
-}`,
-                                    salida: `Adivina el numero (1-100)
-Ingresa tu intento: 50
-Muy alto!
-Ingresa tu intento: 25
-Muy bajo!
-Ingresa tu intento: 37
-Muy alto!
-Ingresa tu intento: 31
-Correcto! Lo lograste en 4 intentos`
-                                }
-                            ]
-                        },
-                        {
-                            nombre: 'Tarea 03',
-                            ejercicios: []
-                        }
+                        { nombre: 'Tarea 01', ejercicios: ['tareas/Actividad01.pdf'] },
+                        { nombre: 'Tarea 02', ejercicios: ['tareas/Tarea_02_Entradas.pdf'] },
+                        { nombre: 'Tarea 03', ejercicios: ['tareas/Tarea_03_Conversiones.pdf'] },
+                        { nombre: 'Tarea 04', ejercicios: ['tareas/Tarea_04_Estructuras.pdf'] },
+                        { nombre: 'Tarea 05', ejercicios: ['tareas/Tarea_05_Funciones.pdf'] },
+                        { nombre: 'Tarea 06', ejercicios: ['tareas/Tarea_06_Funciones_2.pdf'] },
+                        { nombre: 'Tarea 07', ejercicios: ['tareas/Tarea_07.pdf'] }
                     ]
                 },
-                {
-                    nombre: 'Semana 3 y 4',
-                    semanas: 'Estructuras de control',
-                    tareas: []
-                },
-                {
-                    nombre: 'Semana 5 y 6',
-                    semanas: 'POO',
-                    tareas: []
-                },
-                {
-                    nombre: 'Semana 7',
-                    semanas: 'Proyecto Final',
-                    tareas: []
-                }
+                { nombre: 'Unidad 2', tareas: [] }
             ]
         }
     },
     methods: {
         verTarea(tarea) {
-            const modal = new bootstrap.Modal(document.getElementById('tareaModal'));
-            document.getElementById('modalTitle').textContent = tarea.nombre;
-            
-            let contenido = '';
-            
-            if(tarea.ejercicios.length === 0) {
-                contenido = '<div style="text-align:center;padding:3rem;color:var(--secondary)"><i class="fas fa-inbox" style="font-size:4em;margin-bottom:1rem;display:block"></i><p style="font-size:1.2em">No hay ejercicios disponibles</p></div>';
+            if(tarea.ejercicios.length > 0){
+                window.open(tarea.ejercicios[0], '_blank');
             } else {
-                tarea.ejercicios.forEach(ej => {
-                    contenido += `
-                        <div style="background:#fff;border-left:5px solid var(--primary);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 3px 15px rgba(122,156,165,.1)">
-                            <h5 style="color:var(--primary);margin-bottom:1rem">
-                                <i class="fas fa-code"></i> Ejercicio ${ej.num}: ${ej.titulo}
-                            </h5>
-                            <h6 style="color:var(--dark);margin-top:1.5rem;margin-bottom:.8rem;font-weight:600">
-                                <i class="fas fa-file-code"></i> Código:
-                            </h6>
-                            <pre style="background:#f8f9fa;padding:1.5rem;border-radius:8px;overflow-x:auto;border:1px solid var(--accent);color:#000"><code>${ej.codigo}</code></pre>
-                            ${ej.salida ? `
-                            <h6 style="color:var(--dark);margin-top:1.5rem;margin-bottom:.8rem;font-weight:600">
-                                <i class="fas fa-terminal"></i> Salida:
-                            </h6>
-                            <pre style="background:#f8f9fa;color:#000;padding:1.5rem;border-radius:8px;overflow-x:auto;border:1px solid var(--accent);font-family:'Courier New',monospace"><code>${ej.salida}</code></pre>
-                            ` : ''}
-                        </div>
-                    `;
-                });
+                alert('No hay PDF disponible para ' + tarea.nombre);
             }
-            
-            document.getElementById('modalBody').innerHTML = contenido;
-            modal.show();
         }
     }
 }).mount('#app');
