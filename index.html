@@ -7,30 +7,45 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-:root{--primary:#7a9ca5;--secondary:#b8c5c9;--accent:#d4dfe1;--light:#f5f8f9;--dark:#4a6168}
+:root{
+  --primary:#7a9ca5;
+  --secondary:#b8c5c9;
+  --accent:#d4dfe1;
+  --light:#f5f8f9;
+  --dark:#4a6168;
+}
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--light);color:var(--dark)}
+
+/* ── NAVBAR ── */
 .navbar{background:#fff;box-shadow:0 2px 20px rgba(122,156,165,.1);position:sticky;top:0;z-index:100;padding:1rem 0}
 .navbar-brand{font-size:1.8em;color:var(--primary)!important;font-weight:300;letter-spacing:3px}
 .nav-link{color:var(--dark)!important;margin:0 1.2rem;font-size:.95em;letter-spacing:1px;transition:.3s;position:relative}
 .nav-link:hover{color:var(--primary)!important}
 .nav-link::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:.3s}
 .nav-link:hover::after{width:100%}
+
+/* ── HERO ── */
 .hero{background:linear-gradient(rgba(245,248,249,.9),rgba(212,223,225,.85)),url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600');background-size:cover;background-position:center;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
 .hero h1{font-size:4em;color:var(--primary);font-weight:300;letter-spacing:5px;margin-bottom:1rem;animation:fadeInDown 1s}
 .hero p{color:var(--dark);font-size:1.3em;letter-spacing:2px;animation:fadeInUp 1s}
 .hero .info-adicional{font-size:1em;margin-top:0.5rem;opacity:0.85;animation:fadeInUp 1.2s}
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
 section{padding:5rem 0}
+
+/* ── SECTION TITLE ── */
 .section-title{font-size:2.5em;color:var(--primary);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:3rem;position:relative}
 .section-title::after{content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:var(--secondary)}
+
+/* ── INFO CARDS ── */
 .info-card{background:#fff;border-radius:15px;padding:2rem;text-align:center;box-shadow:0 5px 25px rgba(122,156,165,.15);transition:.3s;margin-bottom:2rem}
 .info-card:hover{transform:translateY(-10px);box-shadow:0 10px 35px rgba(122,156,165,.25)}
 .info-card i{font-size:3em;color:var(--primary);margin-bottom:1rem}
 .info-card h4{color:var(--dark);font-weight:400;margin-bottom:1rem}
 
-/* Tabs de navegación de unidades */
+/* ── UNIDAD TABS ── */
 .unidad-tabs{display:flex;gap:1rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
 .unidad-tab{background:#fff;border:3px solid var(--accent);border-radius:15px;padding:1.5rem 2.5rem;cursor:pointer;transition:.3s;text-align:center;min-width:150px}
 .unidad-tab:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(122,156,165,.2)}
@@ -38,184 +53,463 @@ section{padding:5rem 0}
 .unidad-tab h3{font-size:1.5em;font-weight:400;margin:0}
 .unidad-tab p{font-size:.9em;margin:.3rem 0 0 0;opacity:.9}
 
-/* Tarjetas de tareas */
+/* ── TAREA CARDS ── */
 .tarea-card{background:#fff;border:3px solid var(--primary);border-radius:20px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 5px 30px rgba(122,156,165,.15);transition:.3s;position:relative}
 .tarea-card:hover{transform:translateY(-8px);box-shadow:0 10px 40px rgba(122,156,165,.25)}
-
 .tarea-icon{width:80px;height:80px;background:var(--primary);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 4px 15px rgba(122,156,165,.3)}
 .tarea-icon i{font-size:2.5em;color:#fff}
-
 .tarea-titulo{font-size:1.8em;color:var(--primary);font-weight:500;text-align:center;margin-bottom:1.5rem;letter-spacing:1px}
 
-.btn-ver-pdf{background:var(--primary);color:#fff;border:none;border-radius:12px;padding:1rem 2.5rem;font-weight:500;letter-spacing:1px;font-size:1.1em;transition:.3s;display:flex;align-items:center;gap:.8rem;justify-content:center;width:fit-content;margin:0 auto;box-shadow:0 4px 15px rgba(122,156,165,.3)}
-.btn-ver-pdf:hover{background:var(--dark);transform:scale(1.05);box-shadow:0 6px 20px rgba(74,97,104,.4)}
+/* ── BOTONES ── */
+.btn-ver-pdf{background:var(--primary);color:#fff;border:none;border-radius:12px;padding:1rem 2.5rem;font-weight:500;letter-spacing:1px;font-size:1.1em;transition:.3s;display:flex;align-items:center;gap:.8rem;justify-content:center;width:fit-content;margin:0 auto;box-shadow:0 4px 15px rgba(122,156,165,.3);text-decoration:none}
+.btn-ver-pdf:hover{background:var(--dark);color:#fff;transform:scale(1.05);box-shadow:0 6px 20px rgba(74,97,104,.4)}
 .btn-ver-pdf i{font-size:1.3em}
 
+/* ── CONTACTO ── */
+.info-cuadro-contacto{background:rgba(255,255,255,.9);padding:1.5rem 2rem;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.2);max-width:400px;margin:0 auto 2rem auto;font-size:1em;text-align:left}
+.info-cuadro-contacto p{margin:.4rem 0;font-weight:500;color:var(--dark)}
+
+/* ── FOOTER ── */
 footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 0}
 
+/* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:3rem;color:var(--secondary);font-size:1.2em}
 
-/* Cuadro de información en Contacto */
-.info-cuadro-contacto {
-    background: rgba(255,255,255,0.9);
-    padding: 1.5rem 2rem;
-    border-radius: 12px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
-    max-width:400px;
-    margin: 0 auto 2rem auto;
-    font-size: 1em;
-    text-align:left;
-}
-.info-cuadro-contacto p { margin:0.4rem 0; font-weight:500; color:var(--dark); }
+/* ════════════════════════════════════════
+   SECCIÓN LIBRO  —  nueva, armoniosa
+   ════════════════════════════════════════ */
+#libro{background:#fff}
 
-/* Responsive */
-@media (max-width: 768px){
-    .hero h1{font-size:2.5em}
-    .hero p{font-size:1em}
-    .unidad-tab{min-width:120px;padding:1rem 1.5rem}
-    .unidad-tab h3{font-size:1.2em}
-    .tarea-titulo{font-size:1.4em}
+/* tarjeta contenedora del libro */
+.libro-card{
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 8px 45px rgba(122,156,165,.22);
+  overflow:hidden;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+}
+.libro-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 55px rgba(122,156,165,.32);
+}
+
+/* portada visual del libro */
+.libro-portada{
+  background:linear-gradient(145deg, #19376d 0%, #7a9ca5 60%, #125a50 100%);
+  padding:3rem 2rem 2rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.libro-portada::before{
+  content:'';
+  position:absolute;
+  top:-40px; right:-40px;
+  width:180px; height:180px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.libro-portada::after{
+  content:'';
+  position:absolute;
+  bottom:-30px; left:-30px;
+  width:120px; height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+.libro-portada-icon{
+  width:90px;height:90px;
+  background:rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.3);
+  border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.2rem;
+  position:relative;z-index:1;
+  backdrop-filter:blur(4px);
+}
+.libro-portada-icon i{font-size:2.8em;color:#fff}
+.libro-portada-titulo{
+  font-size:1.5em;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:1.5px;
+  margin-bottom:.4rem;
+  position:relative;z-index:1;
+  line-height:1.3;
+}
+.libro-portada-subtitulo{
+  font-size:.9em;
+  color:rgba(255,255,255,.78);
+  letter-spacing:1px;
+  position:relative;z-index:1;
+}
+
+/* bandas de unidades dentro de la portada */
+.libro-unidades-badges{
+  display:flex;gap:.6rem;justify-content:center;
+  flex-wrap:wrap;
+  margin-top:1.2rem;
+  position:relative;z-index:1;
+}
+.libro-badge{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;
+  border-radius:20px;
+  padding:.25rem .9rem;
+  font-size:.8em;
+  letter-spacing:.8px;
+  backdrop-filter:blur(4px);
+}
+
+/* cuerpo de la tarjeta libro */
+.libro-body{
+  padding:2rem 2rem 1.5rem;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.libro-descripcion{
+  color:var(--dark);
+  font-size:.97em;
+  line-height:1.7;
+  margin-bottom:1.5rem;
+}
+.libro-meta{
+  display:flex;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  margin-bottom:1.6rem;
+}
+.libro-meta-item{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.88em;color:var(--dark);opacity:.85;
+}
+.libro-meta-item i{color:var(--primary);font-size:1em}
+
+/* botón especial para el libro */
+.btn-libro{
+  background:linear-gradient(135deg,#19376d,#7a9ca5);
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  padding:1rem 2rem;
+  font-weight:600;
+  font-size:1.05em;
+  letter-spacing:1px;
+  transition:.3s;
+  display:flex;align-items:center;gap:.8rem;
+  justify-content:center;
+  width:100%;
+  box-shadow:0 4px 18px rgba(25,55,109,.25);
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn-libro:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(25,55,109,.38);
+  color:#fff;
+  background:linear-gradient(135deg,#125a50,#19376d);
+}
+.btn-libro i{font-size:1.2em}
+
+/* divisor sutil */
+.libro-divider{
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  border-radius:2px;
+  margin:0 0 1.2rem 0;
+}
+
+/* modal del PDF */
+.modal-pdf .modal-dialog{
+  max-width:92vw;
+  width:92vw;
+}
+.modal-pdf .modal-content{
+  border:none;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 80px rgba(0,0,0,.35);
+}
+.modal-pdf .modal-header{
+  background:linear-gradient(135deg,#19376d,#7a9ca5);
+  border:none;
+  padding:1.2rem 1.8rem;
+}
+.modal-pdf .modal-title{
+  color:#fff;
+  font-weight:400;
+  letter-spacing:2px;
+  font-size:1.1em;
+}
+.modal-pdf .btn-close{filter:invert(1);opacity:.8}
+.modal-pdf .modal-body{padding:0;background:#2d2d2d}
+.modal-pdf iframe{
+  width:100%;
+  height:82vh;
+  border:none;
+  display:block;
+}
+.modal-pdf .modal-footer{
+  background:#f9fafb;
+  border-top:1px solid var(--accent);
+  padding:1rem 1.8rem;
+  justify-content:space-between;
+  align-items:center;
+}
+.modal-pdf .modal-footer small{color:var(--dark);opacity:.6;font-size:.85em}
+
+/* responsive libro */
+@media(max-width:768px){
+  .libro-portada-titulo{font-size:1.2em}
+  .hero h1{font-size:2.5em}
+  .hero p{font-size:1em}
+  .unidad-tab{min-width:120px;padding:1rem 1.5rem}
+  .unidad-tab h3{font-size:1.2em}
+  .tarea-titulo{font-size:1.4em}
+  .modal-pdf .modal-dialog{max-width:99vw;width:99vw;margin:.5rem auto}
+  .modal-pdf iframe{height:75vh}
 }
 </style>
 </head>
 <body>
+
+<!-- ══════════ NAVBAR ══════════ -->
 <nav class="navbar navbar-expand-lg">
-<div class="container"><a class="navbar-brand" href="#inicio"><i class="fas fa-code"></i> LP</a>
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-<div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-<li class="nav-item"><a class="nav-link" href="#info">Información</a></li>
-<li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
-<li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-</ul></div></div>
+  <div class="container">
+    <a class="navbar-brand" href="#inicio"><i class="fas fa-code"></i> LP</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#info">Información</a></li>
+        <li class="nav-item"><a class="nav-link" href="#actividades">Actividades</a></li>
+        <li class="nav-item"><a class="nav-link" href="#libro">Libro</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
+<!-- ══════════ HERO ══════════ -->
 <div class="hero" id="inicio">
-    <div>
-        <h1>Lenguajes de Programación</h1>
-        <p>Una colección de conocimientos fundamentales</p>
-    </div>
+  <div>
+    <h1>Lenguajes de Programación</h1>
+    <p>Una colección de conocimientos fundamentales</p>
+  </div>
 </div>
 
+<!-- ══════════ INFORMACIÓN ══════════ -->
 <section id="info">
-    <div class="container">
-        <h2 class="section-title">Información del Curso</h2>
-        <div class="row">
-            <div class="col-md-3"><div class="info-card"><i class="fas fa-book"></i><h4>Curso</h4><p>Lenguajes de Programación</p></div></div>
-            <div class="col-md-3"><div class="info-card"><i class="fas fa-calendar"></i><h4>Duración</h4><p>2 Unidades</p></div></div>
-            <div class="col-md-3"><div class="info-card"><i class="fas fa-tasks"></i><h4>Actividades</h4><p>Ejercicios prácticos</p></div></div>
-            <div class="col-md-3"><div class="info-card"><i class="fas fa-graduation-cap"></i><h4>Nivel</h4><p>Intermedio</p></div></div>
-        </div>
+  <div class="container">
+    <h2 class="section-title">Información del Curso</h2>
+    <div class="row">
+      <div class="col-md-3"><div class="info-card"><i class="fas fa-book"></i><h4>Curso</h4><p>Lenguajes de Programación</p></div></div>
+      <div class="col-md-3"><div class="info-card"><i class="fas fa-calendar"></i><h4>Duración</h4><p>2 Unidades</p></div></div>
+      <div class="col-md-3"><div class="info-card"><i class="fas fa-tasks"></i><h4>Actividades</h4><p>Ejercicios prácticos</p></div></div>
+      <div class="col-md-3"><div class="info-card"><i class="fas fa-graduation-cap"></i><h4>Nivel</h4><p>Intermedio</p></div></div>
     </div>
+  </div>
 </section>
 
+<!-- ══════════ ACTIVIDADES ══════════ -->
 <section id="actividades" style="background:#fff">
-    <div class="container">
-        <h2 class="section-title">Actividades</h2>
-        
-        <div id="app">
-            <!-- Tabs de Unidades -->
-            <div class="unidad-tabs">
-                <div v-for="(unidad, idx) in unidades" 
-                     :key="idx" 
-                     class="unidad-tab"
-                     :class="{active: unidadActiva === idx}"
-                     @click="unidadActiva = idx">
-                    <h3>{{unidad.nombre}}</h3>
-                </div>
-            </div>
-
-            <!-- Contenido de la Unidad Activa -->
-            <div class="row">
-                <div class="col-md-6" v-for="(tarea, idx) in unidades[unidadActiva].tareas" :key="idx">
-                    <div class="tarea-card">
-                        <div class="tarea-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <h3 class="tarea-titulo">{{tarea.nombre}}</h3>
-                        <button class="btn-ver-pdf" @click="verTarea(tarea)">
-                            <i class="fas fa-eye"></i>
-                            <span>Ver PDF</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div v-if="unidades[unidadActiva].tareas.length === 0" class="col-12">
-                    <div class="empty-state">
-                        <i class="fas fa-folder-open" style="font-size:4em;margin-bottom:1rem;display:block"></i>
-                        <p>No hay tareas disponibles en esta unidad</p>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <h2 class="section-title">Actividades</h2>
+    <div id="app">
+      <div class="unidad-tabs">
+        <div v-for="(unidad, idx) in unidades"
+             :key="idx"
+             class="unidad-tab"
+             :class="{active: unidadActiva === idx}"
+             @click="unidadActiva = idx">
+          <h3>{{unidad.nombre}}</h3>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" v-for="(tarea, idx) in unidades[unidadActiva].tareas" :key="idx">
+          <div class="tarea-card">
+            <div class="tarea-icon"><i class="fas fa-file-pdf"></i></div>
+            <h3 class="tarea-titulo">{{tarea.nombre}}</h3>
+            <button class="btn-ver-pdf" @click="verTarea(tarea)">
+              <i class="fas fa-eye"></i><span>Ver PDF</span>
+            </button>
+          </div>
+        </div>
+        <div v-if="unidades[unidadActiva].tareas.length === 0" class="col-12">
+          <div class="empty-state">
+            <i class="fas fa-folder-open" style="font-size:4em;margin-bottom:1rem;display:block"></i>
+            <p>No hay tareas disponibles en esta unidad</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- ══════════ LIBRO ══════════ -->
+<section id="libro">
+  <div class="container">
+    <h2 class="section-title">Libro del Curso</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-10">
+        <div class="libro-card">
+
+          <!-- Portada visual -->
+          <div class="libro-portada">
+            <div class="libro-portada-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="libro-portada-titulo">Lenguajes de Programación<br>en C y C++</div>
+            <div class="libro-portada-subtitulo">Gilma Coaquira Salluca &nbsp;·&nbsp; 2026</div>
+            <div class="libro-unidades-badges">
+              <span class="libro-badge"><i class="fas fa-layer-group"></i> Unidad 1</span>
+              <span class="libro-badge"><i class="fas fa-layer-group"></i> Unidad 2</span>
+            </div>
+          </div>
+
+          <!-- Cuerpo -->
+          <div class="libro-body">
+            <div>
+              <div class="libro-divider"></div>
+              <p class="libro-descripcion">
+                Libro de estudio completo que cubre los fundamentos de la computación,
+                paradigmas de programación, los lenguajes C y C++, análisis de complejidad,
+                manejo de archivos, estructuras <code>struct</code>, lenguajes modernos
+                (PHP, Java, JavaScript, Go, Rust, Mojo) e interfaces gráficas de usuario.
+              </p>
+              <div class="libro-meta">
+                <div class="libro-meta-item"><i class="fas fa-layer-group"></i> 2 Unidades</div>
+                <div class="libro-meta-item"><i class="fas fa-file-alt"></i> 13 Capítulos</div>
+                <div class="libro-meta-item"><i class="fas fa-code"></i> Ejemplos en C / C++</div>
+                <div class="libro-meta-item"><i class="fas fa-globe"></i> Lenguajes modernos</div>
+              </div>
+            </div>
+            <button class="btn-libro" onclick="abrirLibro()">
+              <i class="fas fa-book-reader"></i> Leer el Libro
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
 <section id="contacto">
-    <div class="container text-center">
-        <h2 class="section-title">Contacto</h2>
-
-        <!-- Cuadro con información -->
-        <div class="info-cuadro-contacto">
-            <p><strong>Universidad:</strong> Nacional del Altiplano</p>
-            <p><strong>Facultad:</strong> Ingeniería de Estadística e Informática</p>
-            <p><strong>Estudiante:</strong> Gilma Coaquira Salluca</p>
-        </div>
-
-        <div class="mt-4">
-            <a href="#" class="btn-ver-pdf me-3" style="display:inline-flex"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://github.com/amlig27/lp-nivel" class="btn-ver-pdf" style="display:inline-flex"><i class="fab fa-github"></i> GitHub</a>
-        </div>
+  <div class="container text-center">
+    <h2 class="section-title">Contacto</h2>
+    <div class="info-cuadro-contacto">
+      <p><strong>Universidad:</strong> Nacional del Altiplano</p>
+      <p><strong>Facultad:</strong> Ingeniería de Estadística e Informática</p>
+      <p><strong>Estudiante:</strong> Gilma Coaquira Salluca</p>
     </div>
+    <div class="mt-4">
+      <a href="#" class="btn-ver-pdf me-3" style="display:inline-flex"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://github.com/amlig27/lp-nivel" class="btn-ver-pdf" style="display:inline-flex"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
 </section>
 
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
-    <div class="container">
-        <p>© 2026 Lenguajes de Programación. Todos los derechos reservados.</p>
-    </div>
+  <div class="container">
+    <p>© 2026 Lenguajes de Programación. Todos los derechos reservados.</p>
+  </div>
 </footer>
 
+<!-- ══════════ MODAL PDF DEL LIBRO ══════════ -->
+<div class="modal fade modal-pdf" id="modalLibro" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="fas fa-book-open me-2"></i>
+          Lenguajes de Programación en C y C++
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <iframe id="iframeLibro" src="" title="Libro del curso"></iframe>
+      </div>
+      <div class="modal-footer">
+        <small><i class="fas fa-info-circle me-1"></i>Usa el visor para navegar entre páginas</small>
+        <a id="linkDescarga" href="#" download class="btn-ver-pdf" style="padding:.6rem 1.4rem;font-size:.95em">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCRIPTS ══════════ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
+/* ── Vue: Actividades ── */
 const {createApp} = Vue;
 createApp({
-    data(){
-        return{
-            unidadActiva: 0,
-            unidades: [
-                {
-                    nombre: 'Unidad 1',
-                    tareas: [
-                        { nombre: 'Tarea 01', ejercicios: ['tareas_en_pdf/Actividad01.pdf'] },
-                        { nombre: 'Tarea 02', ejercicios: ['tareas_en_pdf/Tarea_02_Entradas.pdf'] },
-                        { nombre: 'Tarea 03', ejercicios: ['tareas_en_pdf/Tarea_03_Conversiones.pdf'] },
-                        { nombre: 'Tarea 04', ejercicios: ['tareas_en_pdf/Tarea_04_Estructuras.pdf'] },
-                        { nombre: 'Tarea 05', ejercicios: ['tareas_en_pdf/Tarea_05_Funciones.pdf'] },
-                        { nombre: 'Tarea 06', ejercicios: ['tareas_en_pdf/Tarea_06_Funciones_2.pdf'] },
-                        { nombre: 'Tarea 07', ejercicios: ['tareas_en_pdf/Tarea_07.pdf'] }
-                    ]
-                },
-                {
-                    nombre: 'Unidad 2',
-                    tareas: [
-                        { nombre: 'Tarea Sem4', ejercicios: ['tareas_en_pdf/Tarea_sem4.pdf'] },
-                        { nombre: 'Práctica Integrada', ejercicios: ['tareas_en_pdf/Practica_Integrada.pdf'] }
-                    ]
-                }
-            ]
+  data(){
+    return{
+      unidadActiva: 0,
+      unidades: [
+        {
+          nombre: 'Unidad 1',
+          tareas: [
+            { nombre: 'Tarea 01', ejercicios: ['tareas_en_pdf/Actividad01.pdf'] },
+            { nombre: 'Tarea 02', ejercicios: ['tareas_en_pdf/Tarea_02_Entradas.pdf'] },
+            { nombre: 'Tarea 03', ejercicios: ['tareas_en_pdf/Tarea_03_Conversiones.pdf'] },
+            { nombre: 'Tarea 04', ejercicios: ['tareas_en_pdf/Tarea_04_Estructuras.pdf'] },
+            { nombre: 'Tarea 05', ejercicios: ['tareas_en_pdf/Tarea_05_Funciones.pdf'] },
+            { nombre: 'Tarea 06', ejercicios: ['tareas_en_pdf/Tarea_06_Funciones_2.pdf'] },
+            { nombre: 'Tarea 07', ejercicios: ['tareas_en_pdf/Tarea_07.pdf'] }
+          ]
+        },
+        {
+          nombre: 'Unidad 2',
+          tareas: [
+            { nombre: 'Tarea Sem4',          ejercicios: ['tareas_en_pdf/Tarea_sem4.pdf'] },
+            { nombre: 'Práctica Integrada',  ejercicios: ['tareas_en_pdf/Practica_Integrada.pdf'] }
+          ]
         }
-    },
-    methods: {
-        verTarea(tarea) {
-            if(tarea.ejercicios.length > 0){
-                window.open(tarea.ejercicios[0], '_blank');
-            } else {
-                alert('No hay PDF disponible para ' + tarea.nombre);
-            }
-        }
+      ]
     }
+  },
+  methods: {
+    verTarea(tarea){
+      if(tarea.ejercicios.length > 0){
+        window.open(tarea.ejercicios[0], '_blank');
+      } else {
+        alert('No hay PDF disponible para ' + tarea.nombre);
+      }
+    }
+  }
 }).mount('#app');
+
+/* ── Modal del Libro ── */
+// Ruta del PDF generado — ajusta si lo colocas en otra carpeta
+const LIBRO_PDF = 'Lenguajes_de_Programacion_Unidades_1y2.pdf';
+
+function abrirLibro(){
+  const modalEl = document.getElementById('modalLibro');
+  const modal   = new bootstrap.Modal(modalEl);
+  document.getElementById('iframeLibro').src   = LIBRO_PDF;
+  document.getElementById('linkDescarga').href = LIBRO_PDF;
+  modal.show();
+
+  // Limpiar src al cerrar (evita que el iframe siga cargando en background)
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    document.getElementById('iframeLibro').src = '';
+  }, {once: true});
+}
 </script>
 </body>
 </html>
